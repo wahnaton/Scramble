@@ -7,20 +7,18 @@ final class GameState: ObservableObject {
     @Published private(set) var startTime: Date?
     @Published var elapsedTime: TimeInterval = 0
 
-    /// Call when a new run starts.
     func startRun() {
         startTime = Date()
         elapsedTime = 0
+        level = .one
     }
     
-    /// Records final elapsed time.
     private func stopRun() {
         if let start = startTime {
             elapsedTime = Date().timeIntervalSince(start)
         }
     }
 
-    /// Advances to the next level and stops the timer if run is complete.
     func completeCurrentLevel() {
         guard let idx = Level.allCases.firstIndex(of: level),
               idx + 1 < Level.allCases.count else { return }
