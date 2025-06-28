@@ -16,18 +16,20 @@ struct VerticalScrollLevel: View {
             Color.cyan.ignoresSafeArea()
 
             VStack {
+                Spacer()
+                Text("Scroll!")
+                    .font(.system(size: 55, weight: .heavy, design: .rounded))
+                    .foregroundStyle(.white)
+                    .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 5)
+                
                 BoxBoardView(word: selectedWord) {
                     Picker("", selection: $selectedLetterIndex) {
                         ForEach(0..<letters.count, id: \.self) { i in
                             Text(letters[i])
-                                .font(.title)
+                                .font(.largeTitle)
                                 .bold()
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .foregroundStyle(.white)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .fill(Color.purple)
-                                )
                                 .tag(i)
                         }
                     }
@@ -44,22 +46,10 @@ struct VerticalScrollLevel: View {
                     selectedLetterIndex: $selectedLetterIndex,
                     shake: $shake
                 )
-                .padding(.top, 20)
+                Spacer()
             }
             .onAppear { selectedWord = wordList.randomElement() ?? "ERROR" }
         }
-    }
-}
-
-// MARK: - Simple shake effect
-struct ShakeEffect: GeometryEffect {
-    var animatableData: CGFloat
-    var amplitude: CGFloat = 10
-    var shakesPerUnit: Int = 3
-    
-    func effectValue(size: CGSize) -> ProjectionTransform {
-        let translation = amplitude * sin(animatableData * .pi * CGFloat(shakesPerUnit))
-        return ProjectionTransform(CGAffineTransform(translationX: translation, y: 0))
     }
 }
 

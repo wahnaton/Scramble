@@ -27,6 +27,9 @@ struct FinishedView: View {
                     .font(.system(size: 88, weight: .heavy, design: .rounded))
                     .foregroundStyle(.white)
                     .shadow(color: .yellow.opacity(0.9), radius: 6, x: 0, y: 3)
+                Text(String(format: "Best: %.2f s", game.bestScore()))
+                    .font(.title2.bold())
+                    .foregroundStyle(.white.opacity(0.9))
                 
                 HStack(spacing: 24) {
                     ShareLink(item: shareText) {

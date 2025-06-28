@@ -47,7 +47,7 @@ struct BoxBoardView<LetterSelectionView: View>: View {
         }()
         
         return Text(letter)
-            .font(.title).bold()
+            .font(.largeTitle).bold()
             .frame(width: boxSize, height: boxSize)
             .foregroundStyle(Color.purple)
             .background(

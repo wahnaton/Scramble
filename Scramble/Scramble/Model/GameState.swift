@@ -1,11 +1,18 @@
 import SwiftUI
 
 final class GameState: ObservableObject {
-    enum Level: CaseIterable { case title, one, finished }
+    enum Level: CaseIterable { case title, one, two, three, finished }
 
     @Published var level: Level = .title
     @Published private(set) var startTime: Date?
     @Published var elapsedTime: TimeInterval = 0
+
+    private let bestTimeKey = "bestTime"
+    private let highScoreStore: HighScoreStore
+
+    init(highScoreStore: HighScoreStore = HighScoreStore()) {
+        self.highScoreStore = highScoreStore
+    }
 
     func startRun() {
         startTime = Date()
@@ -14,9 +21,10 @@ final class GameState: ObservableObject {
     }
     
     private func stopRun() {
-        if let start = startTime {
-            elapsedTime = Date().timeIntervalSince(start)
-        }
+        guard let start = startTime else { return }
+
+        elapsedTime = Date().timeIntervalSince(start)
+        highScoreStore.record(elapsedTime)
     }
 
     func completeCurrentLevel() {
@@ -31,5 +39,9 @@ final class GameState: ObservableObject {
         }
 
         level = nextLevel
+    }
+
+    func bestScore() -> TimeInterval {
+        highScoreStore.highScore
     }
 }
