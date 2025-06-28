@@ -8,7 +8,7 @@ final class GameState: ObservableObject {
     @Published var elapsedTime: TimeInterval = 0
 
     private let bestTimeKey = "bestTime"
-    private let highScoreStore: HighScoreStore
+    let highScoreStore: HighScoreStore
 
     init(highScoreStore: HighScoreStore = HighScoreStore()) {
         self.highScoreStore = highScoreStore

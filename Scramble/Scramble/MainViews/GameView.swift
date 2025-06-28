@@ -7,9 +7,9 @@ struct GameView: View {
         ZStack {
             switch game.level {
             case .title: TitleScreen().environmentObject(game)
-            case .one: VerticalScrollLevel().environmentObject(game)
-            case .two: TapLevel().environmentObject(game)
-            case .three: HorizontalScrollLevel().environmentObject(game)
+            case .one: VerticalScrollLevel(letters: WordBank.letters, word: WordBank.random()).environmentObject(game)
+            case .two: TapLevel(letters: WordBank.letters, word: WordBank.random()).environmentObject(game)
+            case .three: HorizontalScrollLevel(letters: WordBank.letters, word: WordBank.random()).environmentObject(game)
             case .finished: FinishedView().environmentObject(game)
             }
         }

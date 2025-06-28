@@ -2,11 +2,8 @@ import SwiftUI
 import AudioToolbox
 
 struct HorizontalScrollLevel: View {
-    private let letters = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ").map(String.init)
-    private let wordList = [
-        "APPLE", "BREAD", "CRISP", "DREAM", "ELITE",
-        "FRANK", "GRACE", "HONEY", "INPUT", "JELLY"
-    ]
+    let letters: [String]
+    let word: String
     @State private var shake: Bool = false
     @State private var selectedLetterIndex: Int = 0
     @State private var selectedWord: String = ""
@@ -41,7 +38,7 @@ struct HorizontalScrollLevel: View {
             }
             .onAppear {
                 selectedLetterIndex = Int.random(in: 0..<letters.count)
-                selectedWord = wordList.randomElement() ?? "ERROR"
+                selectedWord = word
             }
         }
     }
@@ -56,7 +53,7 @@ struct HorizontalPicker: View {
             HStack {
                 ForEach(0..<letters.count, id: \.self) { i in
                     Text(letters[i])
-                        .frame(width: 60, height: 60)
+                        .frame(width: 65, height: 65)
                         .font(.largeTitle)
                         .bold()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -77,10 +74,13 @@ struct HorizontalPicker: View {
             anchor: .center
         )
         .sensoryFeedback(.selection, trigger: selectedLetterIndex)
-        .frame(width: 60, alignment: .leading)
+        .frame(width: 65, alignment: .leading)
     }
 }
 
 #Preview {
-    HorizontalScrollLevel()
+    HorizontalScrollLevel(
+        letters: Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ").map(String.init),
+        word: "APPLE"
+    )
 }

@@ -2,17 +2,14 @@ import SwiftUI
 
 /// Level where the player advances the centre letter by tapping a box
 struct TapLevel: View {
+    let letters: [String]
+    let word: String
+    
     // MARK: - State
     @State private var shake: Bool = false
     @State private var isFlipping = false
     @State private var selectedLetterIndex = Int.random(in: 0..<26)
     @State private var selectedWord: String = ""
-    
-    private let letters = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ").map(String.init)
-    private let wordList = [
-        "APPLE", "BREAD", "CRISP", "DREAM", "ELITE",
-        "FRANK", "GRACE", "HONEY", "INPUT", "JELLY"
-    ]
     
     var body: some View {
         ZStack {
@@ -59,13 +56,16 @@ struct TapLevel: View {
             }
             .padding(.top, 20)
             .onAppear {
-                selectedWord = wordList.randomElement() ?? "ERROR"
+                selectedWord = word
             }
         }
     }
 }
 
 #Preview {
-    TapLevel()
-        .environmentObject(GameState())
+    TapLevel(
+        letters: Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ").map(String.init),
+        word: "APPLE"
+    )
+    .environmentObject(GameState())
 }
