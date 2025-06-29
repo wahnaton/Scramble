@@ -4,7 +4,7 @@ struct VerticalScrollLevel: View {
     let letters: [String]
     let word: String
     @State private var shake: Bool = false
-    @State private var selectedLetterIndex = Int.random(in: 0..<26)
+    @State private var selectedLetterIndex = 0
     @State private var selectedWord: String = ""
     
     var body: some View {
@@ -13,31 +13,34 @@ struct VerticalScrollLevel: View {
 
             VStack {
                 Spacer()
-                VStack {
-                    Text("Scroll!")
-                        .font(.system(size: 55, weight: .heavy, design: .rounded))
-                        .foregroundStyle(.white)
-                        .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 5)
-                    
-                    BoxBoardView(word: selectedWord) {
-                        VerticalPicker(letters: letters, selectedLetterIndex: $selectedLetterIndex)
-                            .background(
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(Color.purple)
-                                    .ignoresSafeArea()
-                            )
-                    }
-
-                    CheckLetterButton(
-                        selectedWord: $selectedWord,
-                        letters: letters,
-                        selectedLetterIndex: $selectedLetterIndex,
-                        shake: $shake
-                    )
-                    Spacer()
+                
+                Text("Scroll!")
+                    .font(.system(size: 55, weight: .heavy, design: .rounded))
+                    .foregroundStyle(.white)
+                    .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 5)
+                
+                BoxBoardView(word: selectedWord) {
+                    VerticalPicker(letters: letters, selectedLetterIndex: $selectedLetterIndex)
+                        .background(
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.purple)
+                                .ignoresSafeArea()
+                        )
                 }
+                
+                Spacer()
+
+                CheckLetterButton(
+                    selectedWord: $selectedWord,
+                    letters: letters,
+                    selectedLetterIndex: $selectedLetterIndex,
+                    shake: $shake
+                )
             }
-            .onAppear { selectedWord = word }
+            .onAppear {
+                selectedWord = word
+                selectedLetterIndex = Int.random(in: 0..<26)
+            }
         }
     }
 }
@@ -79,6 +82,6 @@ struct VerticalPicker: View {
 #Preview {
     VerticalScrollLevel(
         letters: Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ").map(String.init),
-        word: "APPLE"
+        word: "AAAAA"
     )
 }

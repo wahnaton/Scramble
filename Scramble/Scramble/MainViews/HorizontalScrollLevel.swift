@@ -13,6 +13,8 @@ struct HorizontalScrollLevel: View {
             Color.cyan.ignoresSafeArea()
             
             VStack {
+                Spacer()
+
                 Text("Swipe!")
                     .font(.system(size: 55, weight: .heavy, design: .rounded))
                     .foregroundStyle(.white)
@@ -27,14 +29,14 @@ struct HorizontalScrollLevel: View {
                     )
                 }
                 
+                Spacer()
+                
                 CheckLetterButton(
                     selectedWord: $selectedWord,
                     letters: letters,
                     selectedLetterIndex: $selectedLetterIndex,
                     shake: $shake
                 )
-                
-                Spacer()
             }
             .onAppear {
                 selectedLetterIndex = Int.random(in: 0..<letters.count)

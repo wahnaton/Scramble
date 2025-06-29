@@ -11,7 +11,6 @@ struct BoxBoardView<LetterSelectionView: View>: View {
     
     var body: some View {
         VStack {
-            Spacer()
             HStack(spacing: 10) {
                 ForEach(0..<5) { idx in
                     if idx == 2 {
@@ -21,8 +20,6 @@ struct BoxBoardView<LetterSelectionView: View>: View {
                     }
                 }
             }
-            
-            Spacer()
         }
     }
         

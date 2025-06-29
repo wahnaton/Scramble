@@ -29,7 +29,7 @@ struct CheckLetterButton: View {
                 .background(
                     Capsule().fill(Color.yellow)
                 )
-                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 3)
+                .shadow(color: .black.opacity(0.4), radius: 4, x: 0, y: 3)
         }
         .modifier(ShakeEffect(animatableData: CGFloat(shake ? 1 : 0)))
     }

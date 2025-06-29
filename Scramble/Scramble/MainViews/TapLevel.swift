@@ -8,7 +8,7 @@ struct TapLevel: View {
     // MARK: - State
     @State private var shake: Bool = false
     @State private var isFlipping = false
-    @State private var selectedLetterIndex = Int.random(in: 0..<26)
+    @State private var selectedLetterIndex = 0
     @State private var selectedWord: String = ""
     
     var body: some View {
@@ -17,11 +17,12 @@ struct TapLevel: View {
             
             VStack(spacing: 24) {
                 Spacer()
+
                 Text("Tap!")
                     .font(.system(size: 55, weight: .heavy, design: .rounded))
                     .foregroundStyle(.white)
                     .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 5)
-                
+                Spacer()
                 BoxBoardView(word: selectedWord) {
                     Text(letters[selectedLetterIndex])
                         .font(.largeTitle).bold()
@@ -45,6 +46,8 @@ struct TapLevel: View {
                             withAnimation(.easeInOut(duration: 0.1)) { isFlipping = false }
                         }
                     }
+                    .sensoryFeedback(.selection, trigger: selectedLetterIndex)
+
                 Spacer()
 
                 CheckLetterButton(
@@ -57,6 +60,7 @@ struct TapLevel: View {
             .padding(.top, 20)
             .onAppear {
                 selectedWord = word
+                selectedLetterIndex = Int.random(in: 0..<26)
             }
         }
     }
