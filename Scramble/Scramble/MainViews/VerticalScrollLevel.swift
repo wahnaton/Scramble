@@ -12,8 +12,12 @@ struct VerticalScrollLevel: View {
             Color.cyan.ignoresSafeArea()
 
             VStack {
-                Spacer()
+                BannerAdView()
+                    .frame(height: 50)
+                    .padding(.horizontal)
                 
+                Spacer()
+
                 Text("Scroll!")
                     .font(.system(size: 55, weight: .heavy, design: .rounded))
                     .foregroundStyle(.white)
@@ -27,6 +31,12 @@ struct VerticalScrollLevel: View {
                                 .ignoresSafeArea()
                         )
                 }
+                Spacer()
+
+                Rectangle()
+                    .frame(width: 150, height: 150)
+                    .foregroundStyle(Color.clear)
+                    
                 
                 Spacer()
 
@@ -36,6 +46,7 @@ struct VerticalScrollLevel: View {
                     selectedLetterIndex: $selectedLetterIndex,
                     shake: $shake
                 )
+                Spacer()
             }
             .onAppear {
                 selectedWord = word

@@ -15,14 +15,18 @@ struct TapLevel: View {
         ZStack {
             Color.cyan.ignoresSafeArea()
             
-            VStack(spacing: 24) {
+            VStack {
+                BannerAdView()
+                    .frame(height: 50)
+                    .padding([.horizontal, .top])
+                
                 Spacer()
 
-                Text("Tap!")
+                Text("Tap the egg!")
                     .font(.system(size: 55, weight: .heavy, design: .rounded))
                     .foregroundStyle(.white)
                     .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 5)
-                Spacer()
+                
                 BoxBoardView(word: selectedWord) {
                     Text(letters[selectedLetterIndex])
                         .font(.largeTitle).bold()
@@ -31,13 +35,14 @@ struct TapLevel: View {
                         .background(RoundedRectangle(cornerRadius: 20).fill(Color.purple))
                 }
                 
-                Image(systemName: "frying.pan.fill")
+                Spacer()
+
+                Image("plain")
                     .resizable()
-                    .scaledToFit()
                     .frame(width: 150, height: 150)
-                    .foregroundStyle(Color.black.opacity(0.7))
-                    .rotationEffect(.degrees(isFlipping ? 25 : 0), anchor: .trailing)
-                    .offset(y: isFlipping ? -25 : 0)
+                    .foregroundStyle(Color.white)
+                    .shadow(color: .black.opacity(0.1), radius: 0.5)
+                    .offset(y: isFlipping ? 0 : 25)
                     .onTapGesture {
                         selectedLetterIndex = (selectedLetterIndex + 1) % letters.count
                         
@@ -49,15 +54,17 @@ struct TapLevel: View {
                     .sensoryFeedback(.selection, trigger: selectedLetterIndex)
 
                 Spacer()
-
+                
                 CheckLetterButton(
                     selectedWord: $selectedWord,
                     letters: letters,
                     selectedLetterIndex: $selectedLetterIndex,
                     shake: $shake
                 )
+                
+                Spacer()
+                
             }
-            .padding(.top, 20)
             .onAppear {
                 selectedWord = word
                 selectedLetterIndex = Int.random(in: 0..<26)
