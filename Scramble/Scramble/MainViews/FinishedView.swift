@@ -30,16 +30,16 @@ struct FinishedView: View {
                     .shadow(color: .yellow.opacity(0.9), radius: 6, x: 0, y: 3)
                     
                 Spacer()
-//                ForEach(Array(zip(["🥇", "🥈", "🥉"], game.highScoreStore.highScores.prefix(3))), id: \.0) { medal, score in
-//                    Text(String(format: "%@ %.2f", medal, score))
-//                        .font(.largeTitle.bold())
-//                        .foregroundStyle(.white.opacity(0.9))
-//                }
-                ForEach(Array(zip(["🥇", "🥈", "🥉"], ["5.5", "10.4", "66.3"])), id: \.0) { medal, score in
+                ForEach(Array(zip(["🥇", "🥈", "🥉"], game.highScoreStore.highScores.prefix(3))), id: \.0) { medal, score in
                     Text(String(format: "%@ %.2f", medal, score))
                         .font(.largeTitle.bold())
                         .foregroundStyle(.white.opacity(0.9))
                 }
+//                ForEach(Array(zip(["🥇", "🥈", "🥉"], ["5.5", "10.4", "66.3"])), id: \.0) { medal, score in
+//                    Text(String(format: "%@ %.2f", medal, score))
+//                        .font(.largeTitle.bold())
+//                        .foregroundStyle(.white.opacity(0.9))
+//                }
                 Spacer()
                     
                 ShareLink(item: shareText) {
