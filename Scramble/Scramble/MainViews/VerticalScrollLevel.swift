@@ -14,12 +14,16 @@ struct VerticalScrollLevel: View {
             VStack {
                 BannerAdView()
                     .frame(height: 50)
-                    .padding(.horizontal)
-                
+                    .padding([.horizontal, .top])
+
+                Spacer()
+                Spacer()
                 Spacer()
 
                 Text("Scroll!")
-                    .font(.system(size: 55, weight: .heavy, design: .rounded))
+                    .font(.system(size: 55))
+                    .fontWeight(.heavy)
+                    .fontDesign(.rounded)
                     .foregroundStyle(.white)
                     .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 5)
                 
@@ -31,14 +35,10 @@ struct VerticalScrollLevel: View {
                                 .ignoresSafeArea()
                         )
                 }
-                Spacer()
-
+                            
                 Rectangle()
-                    .frame(width: 150, height: 150)
+                    .frame(width: 200, height: 200)
                     .foregroundStyle(Color.clear)
-                    
-                
-                Spacer()
 
                 CheckLetterButton(
                     selectedWord: $selectedWord,
@@ -46,6 +46,7 @@ struct VerticalScrollLevel: View {
                     selectedLetterIndex: $selectedLetterIndex,
                     shake: $shake
                 )
+                
                 Spacer()
             }
             .onAppear {
@@ -68,7 +69,6 @@ struct VerticalPicker: View {
                         .frame(width: 65, height: 65)
                         .font(.largeTitle)
                         .bold()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .foregroundStyle(.white)
                         .id(i)
                 }
@@ -86,7 +86,6 @@ struct VerticalPicker: View {
             anchor: .center
         )
         .sensoryFeedback(.selection, trigger: selectedLetterIndex)
-        .frame(width: 65, alignment: .leading)
     }
 }
 

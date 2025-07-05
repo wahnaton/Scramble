@@ -65,36 +65,3 @@ struct TitleScreen: View {
 #Preview {
     TitleScreen()
 }
-
-struct RulesView: View {
-    @Environment(\.dismiss) private var dismiss
-    
-    var body: some View {
-        ZStack {
-            Color.white.ignoresSafeArea()
-            VStack(spacing: 40) {
-                Text("How to Play")
-                    .font(.largeTitle.bold())
-                    .fontDesign(.rounded)
-                    .foregroundStyle(.cyan)
-                
-                Text("Find as many words as you can by unscrambling the letters before time runs out!")
-                    .font(.title2)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                    .foregroundStyle(.gray)
-                
-                Button("Close") {
-                    dismiss()
-                }
-                .font(.title2.bold())
-                .padding(.horizontal, 40)
-                .padding(.vertical, 16)
-                .foregroundStyle(.white)
-                .background(Capsule().fill(Color.cyan))
-                .shadow(color: .black.opacity(0.3), radius: 4, x: 0, y: 3)
-            }
-            .padding()
-        }
-    }
-}

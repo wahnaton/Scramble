@@ -18,9 +18,13 @@ struct HorizontalScrollLevel: View {
                     .padding([.horizontal, .top])
                 
                 Spacer()
+                Spacer()
+                Spacer()
                 
                 Text("Swipe!")
-                    .font(.system(size: 55, weight: .heavy, design: .rounded))
+                    .font(.system(size: 55))
+                    .fontWeight(.heavy)
+                    .fontDesign(.rounded)
                     .foregroundStyle(.white)
                     .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 5)
                 
@@ -32,15 +36,11 @@ struct HorizontalScrollLevel: View {
                             .ignoresSafeArea()
                     )
                 }
-                
-                Spacer()
 
                 Rectangle()
-                    .frame(width: 150, height: 150)
+                    .frame(width: 200, height: 200)
                     .foregroundStyle(Color.clear)
-                
-                Spacer()
-                
+                                
                 CheckLetterButton(
                     selectedWord: $selectedWord,
                     letters: letters,
@@ -51,8 +51,8 @@ struct HorizontalScrollLevel: View {
                 Spacer()
             }
             .onAppear {
-                selectedLetterIndex = Int.random(in: 0..<letters.count)
                 selectedWord = word
+                selectedLetterIndex = Int.random(in: 0..<letters.count)
             }
         }
     }
@@ -70,7 +70,6 @@ struct HorizontalPicker: View {
                         .frame(width: 65, height: 65)
                         .font(.largeTitle)
                         .bold()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .foregroundStyle(.white)
                         .id(i)
                 }
@@ -88,7 +87,6 @@ struct HorizontalPicker: View {
             anchor: .center
         )
         .sensoryFeedback(.selection, trigger: selectedLetterIndex)
-        .frame(width: 65, alignment: .leading)
     }
 }
 

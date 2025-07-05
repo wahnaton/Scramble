@@ -21,9 +21,14 @@ struct TapLevel: View {
                     .padding([.horizontal, .top])
                 
                 Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
 
                 Text("Tap the egg!")
-                    .font(.system(size: 55, weight: .heavy, design: .rounded))
+                    .font(.system(size: 55))
+                    .fontWeight(.heavy)
+                    .fontDesign(.rounded)
                     .foregroundStyle(.white)
                     .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 5)
                 
@@ -34,12 +39,10 @@ struct TapLevel: View {
                         .foregroundStyle(.white)
                         .background(RoundedRectangle(cornerRadius: 20).fill(Color.purple))
                 }
-                
-                Spacer()
 
                 Image("plain")
                     .resizable()
-                    .frame(width: 150, height: 150)
+                    .frame(width: 200, height: 200)
                     .foregroundStyle(Color.white)
                     .shadow(color: .black.opacity(0.1), radius: 0.5)
                     .offset(y: isFlipping ? 0 : 25)

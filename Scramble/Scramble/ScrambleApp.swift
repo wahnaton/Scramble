@@ -17,7 +17,7 @@ struct ScrambleApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     init() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             let request = Request()
             _ = BannerAdLoader(adUnitID: "ca-app-pub-3940256099942544/2934735716", request: request)
         }

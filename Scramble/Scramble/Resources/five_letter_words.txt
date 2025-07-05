@@ -1,16 +1,12 @@
 aback
 abase
 abate
-abbey
-abbot
 abhor
 abide
 abled
 abode
-abort
 about
 above
-abuse
 abyss
 acorn
 acrid
@@ -64,7 +60,6 @@ along
 aloof
 aloud
 alpha
-altar
 alter
 amass
 amaze
@@ -109,7 +104,6 @@ aroma
 arose
 array
 arrow
-arson
 artsy
 ascot
 ashen
@@ -161,7 +155,6 @@ batch
 bathe
 baton
 batty
-bawdy
 bayou
 beach
 beady
@@ -189,10 +182,8 @@ beset
 betel
 bevel
 bezel
-bible
 bicep
 biddy
-bigot
 bilge
 billy
 binge
@@ -225,7 +216,6 @@ bloat
 block
 bloke
 blond
-blood
 bloom
 blown
 bluer
@@ -240,15 +230,10 @@ bobby
 boney
 bongo
 bonus
-booby
 boost
 booth
-booty
-booze
-boozy
 borax
 borne
-bosom
 bossy
 botch
 bough
@@ -307,12 +292,9 @@ burnt
 burst
 bused
 bushy
-butch
 butte
-buxom
 buyer
 bylaw
-cabal
 cabby
 cabin
 cable
@@ -378,7 +360,6 @@ china
 chirp
 chock
 choir
-choke
 chord
 chore
 chose
@@ -387,8 +368,6 @@ chump
 chunk
 churn
 chute
-cider
-cigar
 cinch
 circa
 civic
@@ -453,7 +432,6 @@ covet
 covey
 cower
 coyly
-crack
 craft
 cramp
 crane
@@ -520,7 +498,6 @@ dandy
 datum
 daunt
 dealt
-death
 debar
 debit
 debug
@@ -536,7 +513,6 @@ deity
 delay
 delta
 delve
-demon
 demur
 denim
 dense
@@ -546,7 +522,6 @@ derby
 deter
 detox
 deuce
-devil
 diary
 dicey
 digit
@@ -605,7 +580,6 @@ dross
 drove
 drown
 druid
-drunk
 dryer
 dryly
 duchy
@@ -654,7 +628,6 @@ emcee
 empty
 enact
 endow
-enema
 enemy
 enjoy
 ennui
@@ -667,7 +640,6 @@ epoxy
 equal
 equip
 erase
-erect
 erode
 error
 erupt
@@ -700,34 +672,27 @@ fairy
 faith
 false
 fancy
-fanny
 farce
 fatal
-fatty
 fault
 fauna
 favor
 feast
-fecal
 feign
 fella
-felon
 femme
 femur
 fence
 feral
 ferry
-fetal
 fetch
 fetid
-fetus
 fever
 fewer
 fiber
 fibre
 ficus
 field
-fiend
 fiery
 fifth
 fifty
@@ -880,7 +845,6 @@ godly
 going
 golem
 golly
-gonad
 goner
 goody
 gooey
@@ -915,7 +879,6 @@ grimy
 grind
 gripe
 groan
-groin
 groom
 grope
 gross
@@ -950,7 +913,6 @@ halve
 handy
 happy
 hardy
-harem
 harpy
 harry
 harsh
@@ -989,7 +951,6 @@ homer
 honey
 honor
 horde
-horny
 horse
 hotel
 hotly
@@ -1007,17 +968,14 @@ hunch
 hunky
 hurry
 husky
-hussy
 hutch
 hydro
 hyena
-hymen
 hyper
 icily
 icing
 ideal
 idiom
-idiot
 idler
 idyll
 igloo
@@ -1072,7 +1030,6 @@ karma
 kayak
 kebab
 khaki
-kinky
 kiosk
 kitty
 knack
@@ -1172,7 +1129,6 @@ lurid
 lusty
 lying
 lymph
-lynch
 lyric
 macaw
 macho
@@ -1251,7 +1207,6 @@ month
 moody
 moose
 moral
-moron
 morph
 mossy
 motel
@@ -1337,7 +1292,6 @@ onion
 onset
 opera
 opine
-opium
 optic
 orbit
 order
@@ -1388,7 +1342,6 @@ peach
 pearl
 pecan
 pedal
-penal
 pence
 penne
 penny
@@ -1483,8 +1436,6 @@ prowl
 proxy
 prude
 prune
-psalm
-pubic
 pudgy
 puffy
 pulpy
@@ -1523,7 +1474,6 @@ quite
 quota
 quote
 quoth
-rabbi
 rabid
 racer
 radar
@@ -1684,7 +1634,6 @@ sedan
 seedy
 segue
 seize
-semen
 sense
 sepia
 serif
@@ -1704,7 +1653,6 @@ shale
 shall
 shalt
 shame
-shank
 shape
 shard
 share
@@ -1731,7 +1679,6 @@ shoal
 shock
 shone
 shook
-shoot
 shore
 shorn
 short
@@ -1756,7 +1703,6 @@ since
 sinew
 singe
 siren
-sissy
 sixth
 sixty
 skate
@@ -1774,7 +1720,6 @@ slang
 slant
 slash
 slate
-slave
 sleek
 sleep
 sleet
@@ -1824,7 +1769,6 @@ sniff
 snipe
 snoop
 snore
-snort
 snout
 snowy
 snuck
@@ -1845,7 +1789,6 @@ south
 sower
 space
 spade
-spank
 spare
 spark
 spasm
@@ -1858,7 +1801,6 @@ spell
 spelt
 spend
 spent
-sperm
 spice
 spicy
 spied
@@ -2118,7 +2060,6 @@ truce
 truck
 truer
 truly
-trump
 trunk
 truss
 trust
@@ -2128,7 +2069,6 @@ tubal
 tuber
 tulip
 tulle
-tumor
 tunic
 turbo
 tutor
@@ -2167,7 +2107,6 @@ unzip
 upper
 upset
 urban
-urine
 usage
 usher
 using
@@ -2209,11 +2148,9 @@ vital
 vivid
 vixen
 vocal
-vodka
 vogue
 voice
 voila
-vomit
 voter
 vouch
 vowel
@@ -2240,7 +2177,6 @@ weird
 welch
 welsh
 wench
-whack
 whale
 wharf
 wheat
@@ -2287,7 +2223,6 @@ worse
 worst
 worth
 would
-wound
 woven
 wrack
 wrath
