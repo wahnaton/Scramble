@@ -15,32 +15,29 @@ struct FinishedView: View {
         ZStack {
             Color.cyan.ignoresSafeArea()
                         
-            VStack (spacing: 16){
-                BannerAdView()
-                    .frame(height: 50)
-                    .padding([.horizontal, .top])
+            VStack (spacing: 32) {
+                Spacer()
                 Text("Scramble")
                     .font(.system(size: 72, weight: .heavy, design: .rounded))
                     .foregroundStyle(.white)
                     .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 5)
-                Spacer()
                 Text(formattedTime)
                     .font(.system(size: 64, weight: .heavy, design: .rounded))
                     .foregroundStyle(.white)
                     .shadow(color: .yellow.opacity(0.9), radius: 6, x: 0, y: 3)
                     
-                Spacer()
-                ForEach(Array(zip(["🥇", "🥈", "🥉"], game.highScoreStore.highScores.prefix(3))), id: \.0) { medal, score in
-                    Text(String(format: "%@ %.2f", medal, score))
-                        .font(.largeTitle.bold())
-                        .foregroundStyle(.white.opacity(0.9))
+                VStack(spacing: 16) {
+                                    ForEach(Array(zip(["🥇", "🥈", "🥉"], game.highScoreStore.highScores.prefix(3))), id: \.0) { medal, score in
+                                        Text(String(format: "%@ %.2f", medal, score))
+                                            .font(.largeTitle.bold())
+                                            .foregroundStyle(.white.opacity(0.9))
+                                    }
+//                    ForEach(Array(zip(["🥇", "🥈", "🥉"], ["5.5", "10.4", "66.3"])), id: \.0) { medal, score in
+//                        Text(String(format: "%@ %.2f", medal, score))
+//                            .font(.largeTitle.bold())
+//                            .foregroundStyle(.white.opacity(0.9))
+//                    }
                 }
-//                ForEach(Array(zip(["🥇", "🥈", "🥉"], ["5.5", "10.4", "66.3"])), id: \.0) { medal, score in
-//                    Text(String(format: "%@ %.2f", medal, score))
-//                        .font(.largeTitle.bold())
-//                        .foregroundStyle(.white.opacity(0.9))
-//                }
-                Spacer()
                     
                 ShareLink(item: shareText) {
                     Label("Share", systemImage: "square.and.arrow.up")
@@ -52,6 +49,8 @@ struct FinishedView: View {
                         )
                         .shadow(radius: 4, y: 3)
                 }
+                .padding(.top)
+                
                 Button {
                     game.startRun()
                 } label: {
@@ -64,7 +63,7 @@ struct FinishedView: View {
                         )
                         .shadow(radius: 4, y: 3)
                 }
-                .padding(.vertical)
+                
                 Spacer()
             }
         }

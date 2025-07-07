@@ -13,10 +13,7 @@ struct HorizontalScrollLevel: View {
             Color.cyan.ignoresSafeArea()
             
             VStack {
-                BannerAdView()
-                    .frame(height: 50)
-                    .padding([.horizontal, .top])
-                
+                Spacer()
                 Spacer()
                 Spacer()
                 Spacer()
@@ -49,6 +46,9 @@ struct HorizontalScrollLevel: View {
                 )
                 
                 Spacer()
+                BannerAdView()
+                    .frame(height: 50)
+                    .padding([.horizontal, .bottom])
             }
             .onAppear {
                 selectedWord = word

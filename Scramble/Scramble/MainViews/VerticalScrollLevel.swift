@@ -10,16 +10,13 @@ struct VerticalScrollLevel: View {
     var body: some View {
         ZStack {
             Color.cyan.ignoresSafeArea()
-
+            
             VStack {
-                BannerAdView()
-                    .frame(height: 50)
-                    .padding([.horizontal, .top])
-
                 Spacer()
                 Spacer()
                 Spacer()
-
+                Spacer()
+                
                 Text("Scroll!")
                     .font(.system(size: 55))
                     .fontWeight(.heavy)
@@ -48,6 +45,11 @@ struct VerticalScrollLevel: View {
                 )
                 
                 Spacer()
+                
+                BannerAdView()
+                    .frame(height: 50)
+                    .padding([.horizontal, .bottom])
+
             }
             .onAppear {
                 selectedWord = word

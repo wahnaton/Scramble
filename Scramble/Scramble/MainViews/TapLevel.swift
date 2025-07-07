@@ -16,10 +16,6 @@ struct TapLevel: View {
             Color.cyan.ignoresSafeArea()
             
             VStack {
-                BannerAdView()
-                    .frame(height: 50)
-                    .padding([.horizontal, .top])
-                
                 Spacer()
                 Spacer()
                 Spacer()
@@ -66,6 +62,9 @@ struct TapLevel: View {
                 )
                 
                 Spacer()
+                BannerAdView()
+                    .frame(height: 50)
+                    .padding([.horizontal, .bottom])
                 
             }
             .onAppear {
