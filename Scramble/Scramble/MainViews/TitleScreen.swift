@@ -2,7 +2,7 @@ import SwiftUI
 
 struct TitleScreen: View {
     @EnvironmentObject private var game: GameState
-    @State private var showRules = false
+    @State private var showSettings = false
     @State private var showStore = false
 
     var body: some View {
@@ -18,9 +18,9 @@ struct TitleScreen: View {
                     .fontDesign(.rounded)
                     .foregroundStyle(.white)
                     .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 5)
-                Image("triplets2")
+                Image("nugget")
                     .resizable()
-                    .scaledToFit()
+                    .frame(width: 300, height: 300)
 
                 Button(action: onPlayTapped) {
                     Text("Play")
@@ -29,14 +29,14 @@ struct TitleScreen: View {
                         .foregroundStyle(.white)
                         .shadow(color: .black.opacity(0.3), radius: 2)
                         .background(
-                            Capsule().fill(Color.yellow)
+                            Capsule().fill(Color.green)
                         )
                 }
                 .shadow(color: .black.opacity(0.4), radius: 4, x: 0, y: 3)
                 .padding(.top)
 
-                Button(action: { showRules = true }) {
-                    Text("Rules")
+                Button(action: { showSettings = true }) {
+                    Text("Settings")
                         .font(.title.bold())
                         .frame(width: 300, height: 60)
                         .foregroundStyle(.white)
@@ -47,12 +47,12 @@ struct TitleScreen: View {
                 }
                 .shadow(color: .black.opacity(0.3), radius: 4, x: 0, y: 3)
                 .padding(.top)
-                .fullScreenCover(isPresented: $showRules) {
-                    RulesView()
+                .sheet(isPresented: $showSettings){
+                    SettingsSheet(showSettingsSheet: $showSettings)
                 }
                 
                 Button(action: { showStore = true }) {
-                    Text("Store")
+                    Text("Remove Ads")
                         .font(.title.bold())
                         .frame(width: 300, height: 60)
                         .foregroundStyle(.white)

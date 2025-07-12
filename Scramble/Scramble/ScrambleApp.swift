@@ -1,5 +1,6 @@
 import SwiftUI
 import GoogleMobileAds
+import AppTrackingTransparency
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
     func application(
@@ -7,7 +8,26 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         MobileAds.shared.start(completionHandler: { _ in })
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization { _ in
+                    self.loadBannerAd()
+                }
+            } else {
+                self.loadBannerAd()
+            }
+        }
+
         return true
+    }
+
+    private func loadBannerAd() {
+        let request = Request()
+        _ = BannerAdLoader(
+            adUnitID: "ca-app-pub-3940256099942544/2934735716",
+            request: request
+        )
     }
 }
 
@@ -16,12 +36,6 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 struct ScrambleApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    init() {
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            let request = Request()
-            _ = BannerAdLoader(adUnitID: "ca-app-pub-3940256099942544/2934735716", request: request)
-        }
-    }
 
     var body: some Scene {
         WindowGroup {
