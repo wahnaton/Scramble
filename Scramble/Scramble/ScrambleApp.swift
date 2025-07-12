@@ -1,3 +1,4 @@
+
 import SwiftUI
 import GoogleMobileAds
 import AppTrackingTransparency
@@ -7,14 +8,10 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-        MobileAds.shared.start(completionHandler: { _ in })
+        MobileAds.shared.start()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            if #available(iOS 14, *) {
-                ATTrackingManager.requestTrackingAuthorization { _ in
-                    self.loadBannerAd()
-                }
-            } else {
+            ATTrackingManager.requestTrackingAuthorization { _ in
                 self.loadBannerAd()
             }
         }
@@ -25,7 +22,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     private func loadBannerAd() {
         let request = Request()
         _ = BannerAdLoader(
-            adUnitID: "ca-app-pub-3940256099942544/2934735716",
+            adUnitID: Bundle.main.object(forInfoDictionaryKey: "GADApplicationIdentifier") as? String ?? "",
             request: request
         )
     }

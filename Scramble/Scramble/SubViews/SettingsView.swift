@@ -82,5 +82,6 @@ struct SettingsButtonTextFormat: View {
 }
 
 #Preview {
-    SettingsSheet(showSettingsSheet: .constant(true))
+    //SettingsSheet(showSettingsSheet: .constant(true))
+    TitleScreen()
 }
