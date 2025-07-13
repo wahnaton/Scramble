@@ -7,6 +7,7 @@ struct HorizontalScrollLevel: View {
     @State private var shake: Bool = false
     @State private var selectedLetterIndex: Int = 0
     @State private var selectedWord: String = ""
+    @EnvironmentObject private var adController: AdController
 
     var body: some View {
         ZStack {
@@ -46,9 +47,12 @@ struct HorizontalScrollLevel: View {
                 )
                 
                 Spacer()
-                BannerAdView()
-                    .frame(height: 50)
-                    .padding([.horizontal, .bottom])
+                
+                if adController.showAds {
+                    BannerAdView()
+                        .frame(height: 50)
+                        .padding([.horizontal, .bottom])
+                }
             }
             .onAppear {
                 selectedWord = word

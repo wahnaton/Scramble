@@ -2,8 +2,9 @@ import SwiftUI
 
 struct TitleScreen: View {
     @EnvironmentObject private var game: GameState
+    @EnvironmentObject private var purchaseManager: PurchaseManager
+    @EnvironmentObject private var adController: AdController
     @State private var showSettings = false
-    @State private var showStore = false
 
     var body: some View {
         ZStack {
@@ -51,20 +52,23 @@ struct TitleScreen: View {
                     SettingsSheet(showSettingsSheet: $showSettings)
                 }
                 
-                Button(action: { showStore = true }) {
-                    Text("Remove Ads")
-                        .font(.title.bold())
-                        .frame(width: 300, height: 60)
-                        .foregroundStyle(.white)
-                        .shadow(color: .black.opacity(0.3), radius: 2)
-                        .background(
-                            Capsule().fill(Color.purple)
-                        )
-                }
-                .shadow(color: .black.opacity(0.3), radius: 4, x: 0, y: 3)
-                .padding(.top)
-                .fullScreenCover(isPresented: $showStore) {
-                    EmptyView()
+                if adController.showAds {
+                    Button {
+                        Task {
+                            await purchaseManager.buyRemoveAds()
+                        }
+                    } label: {
+                        Text("Remove Ads")
+                            .font(.title.bold())
+                            .frame(width: 300, height: 60)
+                            .foregroundStyle(.white)
+                            .shadow(color: .black.opacity(0.3), radius: 2)
+                            .background(
+                                Capsule().fill(Color.purple)
+                            )
+                    }
+                    .shadow(color: .black.opacity(0.3), radius: 4, x: 0, y: 3)
+                    .padding(.top)
                 }
                 
                 Spacer()

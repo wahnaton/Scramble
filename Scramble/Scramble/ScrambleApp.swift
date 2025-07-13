@@ -1,4 +1,3 @@
-
 import SwiftUI
 import GoogleMobileAds
 import AppTrackingTransparency
@@ -8,6 +7,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
+        
         MobileAds.shared.start()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -20,11 +20,13 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     private func loadBannerAd() {
-        let request = Request()
-        _ = BannerAdLoader(
-            adUnitID: Bundle.main.object(forInfoDictionaryKey: "GADApplicationIdentifier") as? String ?? "",
-            request: request
-        )
+        DispatchQueue.main.async {
+            let request = Request()
+            _ = BannerAdLoader(
+                adUnitID: Bundle.main.object(forInfoDictionaryKey: "GADApplicationIdentifier") as? String ?? "",
+                request: request
+            )
+        }
     }
 }
 
@@ -33,10 +35,20 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 struct ScrambleApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
+    @StateObject private var purchaseManager: PurchaseManager
+    @StateObject private var adController: AdController
+
+    init() {
+        let manager = PurchaseManager()
+        _purchaseManager = StateObject(wrappedValue: manager)
+        _adController = StateObject(wrappedValue: AdController(purchaseManager: manager))
+    }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(purchaseManager)
+                .environmentObject(adController)
         }
     }
 }

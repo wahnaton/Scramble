@@ -1,7 +1,8 @@
 import GoogleMobileAds
 
+@MainActor
 final class BannerAdLoader {
-    private let banner: BannerView
+    let banner: BannerView
 
     init(adUnitID: String, request: Request) {
         banner = BannerView(adSize: AdSizeBanner)

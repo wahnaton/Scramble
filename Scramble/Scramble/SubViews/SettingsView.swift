@@ -37,6 +37,7 @@ struct SettingsSheet: View {
             .padding(.top, 8)
             
             List {
+                AccountSection()
                 SupportSection(parentViewModel: settingsViewModel)
             }
             .scrollContentBackground(.hidden)

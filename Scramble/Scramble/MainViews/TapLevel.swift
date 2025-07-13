@@ -10,6 +10,7 @@ struct TapLevel: View {
     @State private var isFlipping = false
     @State private var selectedLetterIndex = 0
     @State private var selectedWord: String = ""
+    @EnvironmentObject private var adController: AdController
     
     var body: some View {
         ZStack {
@@ -62,9 +63,12 @@ struct TapLevel: View {
                 )
                 
                 Spacer()
-                BannerAdView()
-                    .frame(height: 50)
-                    .padding([.horizontal, .bottom])
+                
+                if adController.showAds {
+                    BannerAdView()
+                        .frame(height: 50)
+                        .padding([.horizontal, .bottom])
+                }
                 
             }
             .onAppear {

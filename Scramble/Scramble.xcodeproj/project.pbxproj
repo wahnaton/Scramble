@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D8A663E32E10B8E4009AB2AB /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = D8A663E22E10B8E4009AB2AB /* GoogleMobileAds */; };
+		D8C6929A2E221AF100F2B40A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C692992E221AF100F2B40A /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D8C692992E221AF100F2B40A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D8F027FA2E07087200948B8E /* Scramble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scramble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8F028082E07087300948B8E /* ScrambleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrambleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8F028122E07087300948B8E /* ScrambleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrambleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8A663E32E10B8E4009AB2AB /* GoogleMobileAds in Frameworks */,
+				D8C6929A2E221AF100F2B40A /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +96,7 @@
 		D8A663E12E10B8E4009AB2AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8C692992E221AF100F2B40A /* StoreKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
