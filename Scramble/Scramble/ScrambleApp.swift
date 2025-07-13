@@ -20,6 +20,11 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     private func loadBannerAd() {
+        // Respect “Remove Ads” purchase – don’t even initialise AdMob
+        if UserDefaults.standard.bool(forKey: "adsRemoved") {
+            return
+        }
+
         DispatchQueue.main.async {
             let request = Request()
             _ = BannerAdLoader(
