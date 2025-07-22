@@ -67,6 +67,10 @@ struct FinishedView: View {
                 Spacer()
             }
         }
+        .onAppear {
+            RatingRequester.recordEvent()
+            RatingRequester.requestRatingIfNeeded()
+        }
     }
 }
 

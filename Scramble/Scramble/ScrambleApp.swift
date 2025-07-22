@@ -1,13 +1,16 @@
 import SwiftUI
 import GoogleMobileAds
 import AppTrackingTransparency
+import StoreKit
 
+@MainActor
 final class AppDelegate: NSObject, UIApplicationDelegate {
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         
+        RatingRequester.incrementSession()
         MobileAds.shared.start()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

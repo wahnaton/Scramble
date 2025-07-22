@@ -6,7 +6,7 @@ struct RulesView: View {
         "Build words using different actions!",
         "Tap \"Check\" to see if you guessed correctly",
         "Level 1: Scroll the middle (purple) box up or down to pick a letter",
-        "Level 2: Tap the egg to pick a  etter",
+        "Level 2: Tap the egg to pick a letter",
         "Level 3: Swipe the middle (purple) box left or right to pick a letter",
         "Finish as fast as you can!"
     ]

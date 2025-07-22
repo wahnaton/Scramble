@@ -4,7 +4,9 @@ struct TitleScreen: View {
     @EnvironmentObject private var game: GameState
     @EnvironmentObject private var purchaseManager: PurchaseManager
     @EnvironmentObject private var adController: AdController
+    @AppStorage("hasSeenRules") private var hasSeenRules = false
     @State private var showSettings = false
+    @State private var showRules = false
 
     var body: some View {
         ZStack {
@@ -74,10 +76,20 @@ struct TitleScreen: View {
                 Spacer()
             }
         }
+        .fullScreenCover(isPresented: $showRules, onDismiss: {
+            game.startRun()
+        }) {
+            RulesView()
+        }
     }
     
     private func onPlayTapped() {
-        game.startRun()
+        if !hasSeenRules {
+            showRules = true
+            hasSeenRules = true
+        } else {
+            game.startRun()
+        }
     }
 }
 
