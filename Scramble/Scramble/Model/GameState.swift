@@ -20,6 +20,14 @@ final class GameState: ObservableObject {
         level = .one
     }
     
+    /// Abandon the current run and return to the title screen.
+    /// Does not record any score/time.
+    func quitToTitle() {
+        startTime = nil
+        elapsedTime = 0
+        level = .title
+    }
+
     private func stopRun() {
         guard let start = startTime else { return }
 
