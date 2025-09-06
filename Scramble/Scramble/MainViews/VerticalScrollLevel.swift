@@ -6,6 +6,7 @@ struct VerticalScrollLevel: View {
     @State private var shake: Bool = false
     @State private var selectedLetterIndex = 0
     @State private var selectedWord: String = ""
+    @EnvironmentObject private var game: GameState
     @EnvironmentObject private var adController: AdController
     
     var body: some View {
@@ -59,6 +60,7 @@ struct VerticalScrollLevel: View {
                 selectedLetterIndex = Int.random(in: 0..<26)
             }
         }
+        .overlay(alignment: .topLeading) { CloseToMenuButton() }
     }
 }
 

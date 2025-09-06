@@ -7,6 +7,7 @@ struct HorizontalScrollLevel: View {
     @State private var shake: Bool = false
     @State private var selectedLetterIndex: Int = 0
     @State private var selectedWord: String = ""
+    @EnvironmentObject private var game: GameState
     @EnvironmentObject private var adController: AdController
 
     var body: some View {
@@ -59,6 +60,7 @@ struct HorizontalScrollLevel: View {
                 selectedLetterIndex = Int.random(in: 0..<letters.count)
             }
         }
+        .overlay(alignment: .topLeading) { CloseToMenuButton() }
     }
 }
 
