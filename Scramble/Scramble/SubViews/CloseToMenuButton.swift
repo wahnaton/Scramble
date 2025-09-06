@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CloseToMenuButton: View {
     @EnvironmentObject private var game: GameState
+    // No confirmation — immediately exit to menu in all modes
 
     var body: some View {
         Button(action: { game.quitToTitle() }) {
@@ -26,4 +27,3 @@ struct CloseToMenuButton: View {
         CloseToMenuButton().environmentObject(GameState())
     }
 }
-

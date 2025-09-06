@@ -8,7 +8,12 @@ struct FinishedView: View {
     }
     
     private var shareText: String {
-        "I finished Scramble in \(formattedTime)! Can you beat me? #PlayScrambleGame 🐣"
+        if game.mode == .daily {
+            let dateKey = DailyRunProvider.shared.todayKey()
+            return "Scramble Daily (\(dateKey)): I finished in \(formattedTime)! #PlayScrambleGame 🐣"
+        } else {
+            return "I finished Scramble in \(formattedTime)! Can you beat me? #PlayScrambleGame 🐣"
+        }
     }
     
     var body: some View {
@@ -51,17 +56,32 @@ struct FinishedView: View {
                 }
                 .padding(.top)
                 
-                Button {
-                    game.startRun()
-                } label: {
-                    Text("Play Again")
-                        .font(.title.bold())
-                        .frame(width: 300, height: 75)
-                        .foregroundStyle(.white)
-                        .background(
-                            Capsule().fill(Color.green)
-                        )
-                        .shadow(radius: 4, y: 3)
+                if game.mode == .daily {
+                    Button {
+                        game.quitToTitle()
+                    } label: {
+                        Text("Done")
+                            .font(.title.bold())
+                            .frame(width: 300, height: 75)
+                            .foregroundStyle(.white)
+                            .background(
+                                Capsule().fill(Color.blue)
+                            )
+                            .shadow(radius: 4, y: 3)
+                    }
+                } else {
+                    Button {
+                        game.startRun()
+                    } label: {
+                        Text("Play Again")
+                            .font(.title.bold())
+                            .frame(width: 300, height: 75)
+                            .foregroundStyle(.white)
+                            .background(
+                                Capsule().fill(Color.green)
+                            )
+                            .shadow(radius: 4, y: 3)
+                    }
                 }
                 
                 Spacer()

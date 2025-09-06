@@ -5,8 +5,12 @@ struct TitleScreen: View {
     @EnvironmentObject private var purchaseManager: PurchaseManager
     @EnvironmentObject private var adController: AdController
     @AppStorage("hasSeenRules") private var hasSeenRules = false
+    @AppStorage("daily_last_started_key") private var lastDailyRunKey = ""
     @State private var showSettings = false
     @State private var showRules = false
+    @State private var showDaily = false
+
+    // No pending action routing needed; endless rules auto-start the game
 
     var body: some View {
         ZStack {
@@ -37,6 +41,34 @@ struct TitleScreen: View {
                 }
                 .shadow(color: .black.opacity(0.4), radius: 4, x: 0, y: 3)
                 .padding(.top)
+
+                if hasPlayedDailyToday {
+                    Button(action: {}) {
+                        Text("Daily Complete")
+                            .font(.title.bold())
+                            .frame(width: 300, height: 60)
+                            .foregroundStyle(.white.opacity(0.7))
+                            .background(
+                                Capsule().fill(Color.gray.opacity(0.6))
+                            )
+                    }
+                    .disabled(true)
+                    .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 2)
+                    .padding(.top, 8)
+                } else {
+                    Button(action: onDailyTapped) {
+                        Text("Daily Run")
+                            .font(.title.bold())
+                            .frame(width: 300, height: 60)
+                            .foregroundStyle(.white)
+                            .shadow(color: .black.opacity(0.3), radius: 2)
+                            .background(
+                                Capsule().fill(Color.blue)
+                            )
+                    }
+                    .shadow(color: .black.opacity(0.4), radius: 4, x: 0, y: 3)
+                    .padding(.top, 8)
+                }
 
                 Button(action: { showSettings = true }) {
                     Text("Settings")
@@ -76,11 +108,8 @@ struct TitleScreen: View {
                 Spacer()
             }
         }
-        .fullScreenCover(isPresented: $showRules, onDismiss: {
-            game.startRun()
-        }) {
-            RulesView()
-        }
+        .fullScreenCover(isPresented: $showRules, onDismiss: { game.startRun() }) { RulesView() }
+        .fullScreenCover(isPresented: $showDaily) { DailyLauncherView() }
     }
     
     private func onPlayTapped() {
@@ -90,6 +119,12 @@ struct TitleScreen: View {
         } else {
             game.startRun()
         }
+    }
+
+    private func onDailyTapped() { showDaily = true }
+
+    private var hasPlayedDailyToday: Bool {
+        lastDailyRunKey == DailyRunProvider.shared.todayKey()
     }
 }
 
