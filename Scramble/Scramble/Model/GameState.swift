@@ -2,10 +2,12 @@ import SwiftUI
 
 final class GameState: ObservableObject {
     enum Level: CaseIterable { case title, one, two, three, finished }
+    enum Mode { case endless, daily }
 
     @Published var level: Level = .title
     @Published private(set) var startTime: Date?
     @Published var elapsedTime: TimeInterval = 0
+    @Published var mode: Mode = .endless
 
     private let bestTimeKey = "bestTime"
     let highScoreStore: HighScoreStore
@@ -32,7 +34,12 @@ final class GameState: ObservableObject {
         guard let start = startTime else { return }
 
         elapsedTime = Date().timeIntervalSince(start)
-        highScoreStore.record(elapsedTime)
+        if mode == .endless {
+            highScoreStore.record(elapsedTime)
+        } else if mode == .daily {
+            // Mark daily run as completed once the run finishes.
+            DailyRunProvider.shared.markCompletedToday()
+        }
     }
 
     func completeCurrentLevel() {

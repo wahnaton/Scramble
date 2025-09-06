@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct RulesView: View {
+    var onClose: (() -> Void)? = nil
     /// Game rules displayed to the user.
     private let rules: [String] = [
         "Build words using different actions!",
@@ -43,9 +44,7 @@ struct RulesView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.vertical)
                                 
-                Button("Close") {
-                    dismiss()
-                }
+                Button("Close") { onClose?() ?? dismiss() }
                 .font(.title2.bold())
                 .frame(width: 150, height: 60)
                 .foregroundStyle(.white)
@@ -60,6 +59,4 @@ struct RulesView: View {
     }
 }
 
-#Preview {
-    RulesView()
-}
+#Preview { RulesView() }
