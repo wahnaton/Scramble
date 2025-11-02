@@ -9,6 +9,7 @@ struct DailyRunProvider {
     private let staticSalt = "9B0F7F7A-DA12-4D8C-9F0E-8D8E0DAILY-SALT-PLACEHOLDER"
 
     private let playedKey = "daily_last_started_key"
+    private let resultPrefix = "daily_result_"
 
     func todayKey(date: Date = Date()) -> String {
         let comps = Calendar.current.dateComponents([.year, .month, .day], from: date)
@@ -23,6 +24,22 @@ struct DailyRunProvider {
     // Mark the daily as completed for the given date (used at run end).
     func markCompletedToday(date: Date = Date()) {
         UserDefaults.standard.set(todayKey(date: date), forKey: playedKey)
+    }
+
+    func saveResult(_ time: TimeInterval, for date: Date = Date()) {
+        let key = resultPrefix + todayKey(date: date)
+        UserDefaults.standard.set(time, forKey: key)
+    }
+
+    func loadResult(for date: Date = Date()) -> TimeInterval? {
+        let key = resultPrefix + todayKey(date: date)
+        if let n = UserDefaults.standard.object(forKey: key) as? NSNumber {
+            return n.doubleValue
+        }
+        if UserDefaults.standard.object(forKey: key) != nil {
+            return UserDefaults.standard.double(forKey: key)
+        }
+        return nil
     }
 
     /// Return three deterministic words for the given date.

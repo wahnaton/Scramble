@@ -9,6 +9,7 @@ struct TitleScreen: View {
     @State private var showSettings = false
     @State private var showRules = false
     @State private var showDaily = false
+    @State private var showDailyResult = false
 
     // No pending action routing needed; endless rules auto-start the game
 
@@ -43,17 +44,19 @@ struct TitleScreen: View {
                 .padding(.top)
 
                 if hasPlayedDailyToday {
-                    Button(action: {}) {
-                        Text("Daily Complete")
-                            .font(.title.bold())
-                            .frame(width: 300, height: 60)
-                            .foregroundStyle(.white.opacity(0.7))
-                            .background(
-                                Capsule().fill(Color.gray.opacity(0.6))
-                            )
+                    Button(action: { showDailyResult = true }) {
+                        HStack(spacing: 10) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.title2.weight(.bold))
+                                .foregroundStyle(.white)
+                            Text("View Daily Result")
+                                .font(.title.bold())
+                                .foregroundStyle(.white)
+                        }
+                        .frame(width: 300, height: 60)
+                        .background(Capsule().fill(Color.blue))
                     }
-                    .disabled(true)
-                    .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 2)
+                    .shadow(color: .black.opacity(0.4), radius: 4, x: 0, y: 3)
                     .padding(.top, 8)
                 } else {
                     Button(action: onDailyTapped) {
@@ -70,46 +73,52 @@ struct TitleScreen: View {
                     .padding(.top, 8)
                 }
 
-                Button(action: { showSettings = true }) {
-                    Text("Settings")
-                        .font(.title.bold())
-                        .frame(width: 300, height: 60)
-                        .foregroundStyle(.white)
-                        .shadow(color: .black.opacity(0.3), radius: 2)
-                        .background(
-                            Capsule().fill(Color.orange)
-                        )
-                }
-                .shadow(color: .black.opacity(0.3), radius: 4, x: 0, y: 3)
-                .padding(.top)
-                .sheet(isPresented: $showSettings){
-                    SettingsSheet(showSettingsSheet: $showSettings)
-                }
-                
-                if adController.showAds {
-                    Button {
-                        Task {
-                            await purchaseManager.buyRemoveAds()
-                        }
-                    } label: {
-                        Text("Remove Ads")
-                            .font(.title.bold())
-                            .frame(width: 300, height: 60)
-                            .foregroundStyle(.white)
-                            .shadow(color: .black.opacity(0.3), radius: 2)
-                            .background(
-                                Capsule().fill(Color.purple)
-                            )
-                    }
-                    .shadow(color: .black.opacity(0.3), radius: 4, x: 0, y: 3)
-                    .padding(.top)
-                }
+                // (Settings and Remove Ads moved to top‑right icon buttons)
                 
                 Spacer()
             }
         }
+        // Lightweight top‑right icons for Settings and Remove Ads
+        .overlay(alignment: .topTrailing) {
+            HStack(spacing: 12) {
+                if adController.showAds {
+                    Button {
+                        Task { await purchaseManager.buyRemoveAds() }
+                    } label: {
+                        Image(systemName: "storefront")
+                            .font(.headline.weight(.bold))
+                            .foregroundStyle(Color.purple)
+                            .frame(width: 36, height: 36)
+                            .background(Circle().fill(Color.white))
+                            .overlay(Circle().stroke(Color.yellow, lineWidth: 3))
+                            .shadow(color: .black.opacity(0.2), radius: 3, y: 2)
+                    }
+                    .accessibilityLabel("Remove Ads")
+                }
+
+                Button { showSettings = true } label: {
+                    Image(systemName: "gearshape.fill")
+                        .font(.headline.weight(.bold))
+                        .foregroundStyle(Color.purple)
+                        .frame(width: 36, height: 36)
+                        .background(Circle().fill(Color.white))
+                        .overlay(Circle().stroke(Color.yellow, lineWidth: 3))
+                        .shadow(color: .black.opacity(0.2), radius: 3, y: 2)
+                }
+                .accessibilityLabel("Settings")
+            }
+            .padding(.trailing)
+            .padding(.top, 8)
+        }
         .fullScreenCover(isPresented: $showRules, onDismiss: { game.startRun() }) { RulesView() }
         .fullScreenCover(isPresented: $showDaily) { DailyLauncherView() }
+        .sheet(isPresented: $showDailyResult) {
+            let dateKey = DailyRunProvider.shared.todayKey()
+            DailyResultView(dateKey: dateKey, time: DailyRunProvider.shared.loadResult())
+        }
+        .sheet(isPresented: $showSettings){
+            SettingsSheet(showSettingsSheet: $showSettings)
+        }
     }
     
     private func onPlayTapped() {

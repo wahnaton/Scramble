@@ -39,6 +39,7 @@ final class GameState: ObservableObject {
         } else if mode == .daily {
             // Mark daily run as completed once the run finishes.
             DailyRunProvider.shared.markCompletedToday()
+            DailyRunProvider.shared.saveResult(elapsedTime)
         }
     }
 
